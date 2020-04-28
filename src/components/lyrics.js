@@ -1,6 +1,5 @@
 import React, {Component} from 'react';
 
-
 class Lyrics extends Component{
   constructor(props) {
       super(props)
@@ -12,7 +11,6 @@ class Lyrics extends Component{
       const proxyurl = "https://cors-anywhere.herokuapp.com/";
       const res = await fetch(proxyurl + url)
       const json = await res.json() 
-      // console.log(json)
       // return json
       
       this.setState({ lyricsData: json })
@@ -35,17 +33,13 @@ class Lyrics extends Component{
     const lyrics_data = this.state.lyricsData
     console.log(lyrics_data)
     if (lyrics_data !== null){
-      const {lyrics} = lyrics_data.message.body
-      const ly = JSON.stringify(lyrics)
-      console.log(ly['lyrics_id'])
-      console.log(ly)
-
-      const {body} = lyrics
-      console.log(lyrics)
-
-      return body
+      const {lyrics_body} = lyrics_data.message.body.lyrics
+      console.log(lyrics_body)
+      return lyrics_body
     } 
+    return 'loading'
   }
+
 
   render() {
     return (
@@ -56,9 +50,5 @@ class Lyrics extends Component{
     )
   }
 }
-
-
-
-
 
 export default Lyrics;

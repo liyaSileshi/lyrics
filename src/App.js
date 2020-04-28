@@ -3,6 +3,8 @@ import logo from './logo.svg';
 import './App.css';
 
 function App() {
+  const apikey = process.env.REACT_APP_LYRICS_API_KEY
+  console.log(apikey)
   return (
     <div className="App">
       <header className="App-header">

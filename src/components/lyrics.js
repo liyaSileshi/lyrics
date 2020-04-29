@@ -3,7 +3,9 @@ import React, {Component} from 'react';
 class Lyrics extends Component{
   constructor(props) {
       super(props)
-      this.state = {lyricsData : null}
+      this.state = {lyricsData : null,
+                    artist: '',
+                    song: ''}
   }
     
   async getLyricData(url) {
@@ -25,7 +27,7 @@ class Lyrics extends Component{
   handleSubmit(e) {
     e.preventDefault();
     const apikey = process.env.REACT_APP_LYRICS_API_KEY
-    const url = `https://api.musixmatch.com/ws/1.1/matcher.lyrics.get?format=json&callback=callback&q_track=Stay&q_artist=Alessia%20&apikey=${apikey}`
+    const url = `https://api.musixmatch.com/ws/1.1/matcher.lyrics.get?format=json&callback=callback&q_track=${this.state.song}&q_artist=${this.state.artist}%20&apikey=${apikey}`
     this.getLyricData(url)
   }
 
@@ -43,8 +45,27 @@ class Lyrics extends Component{
 
   render() {
     return (
+
       <div>
-        <button onClick = {(e) => this.handleSubmit(e)}></button>
+        <form onSubmit={e => this.handleSubmit(e)}>
+          <input 
+            value={this.state.artist} 
+            onChange={e => this.setState({ artist: e.target.value })}
+            type="text" 
+            placeholder="enter artist"
+          />
+          <input 
+            value={this.state.song} 
+            onChange={e => this.setState({ song: e.target.value })}
+            type="text" 
+            placeholder="enter song"
+          />
+
+          <button className='submit-btn' type="submit">Generate Lyrics</button>
+
+        </form>
+
+        {/* <button onClick = {(e) => this.handleSubmit(e)}>Generate Lyrics</button> */}
         <p>{this.renderLyrics()}</p>
       </div> 
     )

@@ -37,7 +37,12 @@ class Lyrics extends Component{
     if (lyrics_data !== null){
       const {lyrics_body} = lyrics_data.message.body.lyrics
       console.log(lyrics_body)
-      return lyrics_body
+      const lines = lyrics_body.split('\n')
+      //get a random elt from the lines array
+      const randomline = lines[Math.floor(Math.random() *lines.length)];
+      console.log(randomline)
+      // const [first_line] = lyrics_body.split('\n')
+      return randomline
     } 
     return 'loading'
   }
@@ -64,8 +69,6 @@ class Lyrics extends Component{
           <button className='submit-btn' type="submit">Generate Lyrics</button>
 
         </form>
-
-        {/* <button onClick = {(e) => this.handleSubmit(e)}>Generate Lyrics</button> */}
         <p>{this.renderLyrics()}</p>
       </div> 
     )

@@ -27,7 +27,7 @@ class treeNode{
   getChild(character){
     //Return this prefix tree node's child node that represents the given
     //character if it is amongst its children
-    if (this.has_child(character)){
+    if (this.hasChild(character)){
       //Find child node for given character in this node's children
       return this.children[character]
     } 
@@ -37,7 +37,7 @@ class treeNode{
   addChild(character, childNode){
   //Add the given character and child node as a child of this node, or
   //raise ValueError if given character is amongst this node's children
-    if (!(this.has_child(character))){
+    if (!(this.hasChild(character))){
         //Add given character and child node to this node's children
         this.children[character] = childNode
     }else{

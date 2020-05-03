@@ -47,10 +47,11 @@ class Trie {
       }
     })
     //check if new str was inserted
-    if (!node.is_terminal()){
+    if (!node.isTerminal()){
       this.size += 1;
       node.terminal = true;
     }
+    console.log('insert')
   }
 
   /* Return a pair containing the deepest node in this prefix tree that
@@ -78,19 +79,56 @@ class Trie {
     return [node, depth]
   }
 
-
+  /* Return a list of all strings stored in this prefix tree that start
+    with the given prefix string. */
   complete(prefix){
-
+    let completions = []
+    // find node of prefix
+    let node = this.findNode(prefix)[0]
+    // check if node is found
+    if (node === null) {
+      return completions //empty arr
+    }
+    // check if node is terminal
+    if (node.isTerminal()) {
+      completions.push(prefix)
+    }
+    // for each ch 
+    Object.keys(node.children).forEach(ch => {
+      let childNode = node.getChild(ch)
+      this.traverse(childNode, prefix+ch, completions)
+    });
+    return completions
   }
 
+  /* Return a list of all strings stored in this prefix tree */
   strings() {
-
+    let all_strings = []
+    let node = this.root
+    // for each ch 
+    Object.keys(node.children).forEach(ch => {
+      let childNode = node.getChild(ch)
+      this.traverse(childNode, ch, all_strings)
+    });
+    return all_strings
   }
 
-  traverse() {
+  /* Traverse this prefix tree with recursive depth-first traversal.
+  Start at the given node with the given prefix representing its path in
+  this prefix tree and visit each node with the given visit function. */
+  traverse(node, prefix, list) {
+    if (node.isTerminal()) {
+      list.push(prefix) //append prefix
 
+    }
+    if (node.numChildren() > 0) {
+      Object.keys(node.children).forEach(ch => {
+        let childNode = node.getChild(ch)
+        this.traverse(childNode, prefix + ch, list)
+      });
+    }
   }
-
-  
 
 }
+
+export default Trie;

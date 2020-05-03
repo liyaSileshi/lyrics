@@ -6,8 +6,6 @@ import Lyrics from './components/lyrics';
 import Trie from './utils/prefixtree'
 
 
-
-
 function App() {
   let tree = new Trie(['hey', 'howdy', 'yo', 'hey'])
   console.log(tree.root)

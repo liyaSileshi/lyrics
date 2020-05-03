@@ -8,7 +8,7 @@ const song_title = data.map((song) => {
 
 const song_title_set = new Set(song_title) //    gives only unique songs
 const artist_unique = Array.from(song_title_set)
-console.log(artist_unique)
+// console.log(artist_unique)
 
 
 // Make an Object whose keys are the names of
@@ -26,7 +26,7 @@ const artistWithCount = data.reduce((obj, song) => {
     return obj
     }
     ,{})  //initial value of object is {}
-console.log(artistWithCount)
+// console.log(artistWithCount)
 
 export default data
 export {song_title}

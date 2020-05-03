@@ -36,8 +36,22 @@ class Lyrics extends Component{
     console.log(lyrics_data)
     if (lyrics_data !== null){
       const {lyrics_body} = lyrics_data.message.body.lyrics
-      console.log(lyrics_body)
-      const lines = lyrics_body.split('\n')
+      let lines = lyrics_body.split('\n')
+      console.log('before')
+      console.log(lines)
+      // remove the last 4 elts in the lines array
+      lines.splice(lines.length - 4)
+      // filter out elts with empty strings
+      lines = lines.filter((line) => {
+        return line !== ""
+      })
+      // replaced regEx with empty space
+      lines = lines.map((line) => {
+        return line.replace(/[|&;$%@"<>()+,]/g, "");
+      })
+      
+      console.log('after')
+      console.log(lines)
       //get a random elt from the lines array
       const randomline = lines[Math.floor(Math.random() *lines.length)];
       console.log(randomline)
@@ -50,7 +64,6 @@ class Lyrics extends Component{
 
   render() {
     return (
-
       <div>
         <form onSubmit={e => this.handleSubmit(e)}>
           <input 

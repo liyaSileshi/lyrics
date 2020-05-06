@@ -70,9 +70,11 @@ class Trie {
     string_arr.forEach(ch => {
       if (node.hasChild(ch)){
         node = node.getChild(ch)
+        console.log(node)
         depth += 1
       }
       else{
+        console.log('no child')
         return [null, depth]
       }
     })
@@ -85,9 +87,10 @@ class Trie {
     let completions = []
     // find node of prefix
     let node = this.findNode(prefix)[0]
+    console.log(node)
     // check if node is found
     if (node === null) {
-      return completions //empty arr
+      return [] //empty arr
     }
     // check if node is terminal
     if (node.isTerminal()) {

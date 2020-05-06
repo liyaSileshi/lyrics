@@ -1,4 +1,6 @@
 import React, {Component} from 'react';
+import {getRandomSinger} from '../spotify'
+import Guess from './Guess'
 
 class Lyrics extends Component{
   constructor(props) {
@@ -27,18 +29,25 @@ class Lyrics extends Component{
   handleSubmit(e) {
     e.preventDefault();
     const apikey = process.env.REACT_APP_LYRICS_API_KEY
-    const url = `https://api.musixmatch.com/ws/1.1/matcher.lyrics.get?format=json&callback=callback&q_track=${this.state.song}&q_artist=${this.state.artist}%20&apikey=${apikey}`
+    // const url = `https://api.musixmatch.com/ws/1.1/matcher.lyrics.get?format=json&callback=callback&q_track=${this.state.song}&q_artist=${this.state.artist}%20&apikey=${apikey}`
+    const [title, artist] = getRandomSinger()
+    //set the state of the song to the current selected title and artist
+    this.setState({artist : artist, song : title})
+    console.log(this.state)
+    console.log(title)
+    console.log(artist)
+    const url = `https://api.musixmatch.com/ws/1.1/matcher.lyrics.get?format=json&callback=callback&q_track=${title}&q_artist=${artist}%20&apikey=${apikey}`
     this.getLyricData(url)
   }
 
   renderLyrics() {
     const lyrics_data = this.state.lyricsData
-    console.log(lyrics_data)
+    // console.log(lyrics_data)
     if (lyrics_data !== null){
       const {lyrics_body} = lyrics_data.message.body.lyrics
       let lines = lyrics_body.split('\n')
-      console.log('before')
-      console.log(lines)
+      // console.log('before')
+      // console.log(lines)
       // remove the last 4 elts in the lines array
       lines.splice(lines.length - 4)
       // filter out elts with empty strings
@@ -50,13 +59,17 @@ class Lyrics extends Component{
         return line.replace(/[|&;$%@"<>()+,]/g, "");
       })
       
-      console.log('after')
-      console.log(lines)
+      // console.log('after')
+      // console.log(lines)
       //get a random elt from the lines array
-      const randomline = lines[Math.floor(Math.random() *lines.length)];
-      console.log(randomline)
+      // const randomline = lines[Math.floor(Math.random() *lines.length)];
+      // console.log(randomline)
       // const [first_line] = lyrics_body.split('\n')
-      return randomline
+      // return randomline
+
+      // return the first 3 lines of the lyrics
+      const firstThree = lines.slice(0, 3)
+      return firstThree
     } 
     return 'loading'
   }
@@ -83,6 +96,7 @@ class Lyrics extends Component{
 
         </form>
         <p>{this.renderLyrics()}</p>
+        <Guess artist = {this.state.artist}/>
       </div> 
     )
   }

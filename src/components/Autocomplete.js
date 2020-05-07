@@ -9,7 +9,10 @@ function Autocomplete (props) {
     if (props.guessArtist.length > 0) {
         console.log(props.guessArtist)
         // console.log(tree.findNode(props.guessArtist))
-        return  tree.complete(props.guessArtist)
+        // return  tree.complete(props.guessArtist)
+        return tree.complete(props.guessArtist).map((name) => {
+            return <p>{name}</p>
+          })
     }
    else return 'none' 
 }

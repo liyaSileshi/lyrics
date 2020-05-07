@@ -67,9 +67,9 @@ class Trie {
     let node = this.root
     //loop through the string
     let string_arr = [...string]
-    string_arr.forEach(ch => {
-      if (node.hasChild(ch)){
-        node = node.getChild(ch)
+    for (let ch = 0; ch < string_arr.length; ch++) {
+      if (node.hasChild(string_arr[ch])){
+        node = node.getChild(string_arr[ch])
         console.log(node)
         depth += 1
       }
@@ -77,7 +77,7 @@ class Trie {
         console.log('no child')
         return [null, depth]
       }
-    })
+    }
     return [node, depth]
   }
 

@@ -68,8 +68,12 @@ class Lyrics extends Component{
       // return randomline
 
       // return the first 3 lines of the lyrics
-      const firstThree = lines.slice(0, 3)
-      return firstThree
+      const firstSix = lines.slice(0, 6)
+      return firstSix.map((lyric) => {
+        return <p>{lyric}</p>
+      })
+      // return firstSix
+      
     } 
     return 'loading'
   }

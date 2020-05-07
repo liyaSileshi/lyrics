@@ -35,6 +35,7 @@ class Trie {
     let node = this.root;
     //convert string into array to loop over character
     [...string].forEach(ch => {
+      ch = ch.toLowerCase()
       if (node.hasChild(ch)) {
         node = node.getChild(ch)
       }

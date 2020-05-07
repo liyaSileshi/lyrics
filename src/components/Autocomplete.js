@@ -1,17 +1,15 @@
-import React, {Component} from 'react';
+import React from 'react';
 import Trie from '../utils/prefixtree';
-import {uniqueArtists} from '../spotify';
+import {uniqueArtists, artistObject} from '../spotify';
 
 let tree = new Trie(uniqueArtists)
 
 function Autocomplete (props) {
-    // console.log(tree)
     if (props.guessArtist.length > 0) {
         console.log(props.guessArtist)
-        // console.log(tree.findNode(props.guessArtist))
-        // return  tree.complete(props.guessArtist)
-        return tree.complete(props.guessArtist).map((name) => {
-            return <p>{name}</p>
+        console.log(tree.strings())
+        return tree.complete(props.guessArtist.toLowerCase()).map((name) => {
+            return <div>{artistObject[name]}</div>
           })
     }
    else return 'none' 

@@ -13,7 +13,9 @@ class Guess extends Component{
   }
   handleGuessLogic(e) {
     e.preventDefault();
-    if (this.state.guessArtist === this.props.artist) {
+
+    if (this.state.guessArtist.toLowerCase() === this.props.artist.toLowerCase()) {
+
       console.log('woo hoo')
       return 'woo Hoo'
     } else {

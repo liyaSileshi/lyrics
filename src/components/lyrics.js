@@ -46,8 +46,6 @@ class Lyrics extends Component{
     if (lyrics_data !== null){
       const {lyrics_body} = lyrics_data.message.body.lyrics
       let lines = lyrics_body.split('\n')
-      // console.log('before')
-      // console.log(lines)
       // remove the last 4 elts in the lines array
       lines.splice(lines.length - 4)
       // filter out elts with empty strings
@@ -58,14 +56,7 @@ class Lyrics extends Component{
       lines = lines.map((line) => {
         return line.replace(/[|&;$%@"<>()+,]/g, "");
       })
-      
-      // console.log('after')
-      // console.log(lines)
-      //get a random elt from the lines array
-      // const randomline = lines[Math.floor(Math.random() *lines.length)];
-      // console.log(randomline)
-      // const [first_line] = lyrics_body.split('\n')
-      // return randomline
+     
 
       // return the first 3 lines of the lyrics
       const firstSix = lines.slice(0, 6)

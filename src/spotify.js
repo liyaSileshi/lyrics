@@ -2,13 +2,19 @@ import data from './spotify.json'
 
 
 const song_artist = data.map((song) => {
-  // console.log(song.title)
   return song.artist
 })
 
-const artist_set = new Set(song_artist) //    gives only unique songs
-const uniqueArtists = Array.from(artist_set)
-// console.log(uniqueArtists)
+const artist_set = new Set(song_artist) //    gives only unique artists
+
+const uniqueArtists = Array.from(artist_set) //converts unique artist to Array
+
+//object containing keys as artist in lowercase and value = original case
+const artistObject = uniqueArtists.reduce((obj, artist) => {
+  obj[artist.toLowerCase()] = artist
+  return obj
+}, {})
+console.log(artistObject)
 
 
 // Make an Object whose keys are the names of
@@ -26,7 +32,7 @@ const artistWithCount = data.reduce((obj, song) => {
   return obj
   }
   ,{})  //initial value of object is {}
-// console.log(artistWithCount)
+
 
 
 
@@ -38,4 +44,4 @@ const getRandomSinger = () => {
 
 
 export default data
-export {song_artist, getRandomSinger, uniqueArtists}
+export {song_artist, getRandomSinger, uniqueArtists, artistObject}

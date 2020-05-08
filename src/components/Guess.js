@@ -11,6 +11,7 @@ class Guess extends Component{
                     guessArtist: ''
                     }
   }
+
   handleGuessLogic(e) {
     e.preventDefault();
 
@@ -24,6 +25,9 @@ class Guess extends Component{
     }
   }
   
+  //when an auto complete option is clicked, add it as input
+  updateText = (text) => {this.setState({ guessArtist : text })}
+
   render() {
     return (
       <div>
@@ -36,7 +40,7 @@ class Guess extends Component{
       />
       <button className='submit-btn' type="submit">Submit Guess</button>
       </form>
-      <Autocomplete guessArtist = {this.state.guessArtist}/> 
+      <Autocomplete guessArtist = {this.state.guessArtist} updateGuess={this.updateText}/> 
     </div>
     )
   }

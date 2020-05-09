@@ -1,8 +1,7 @@
 import React from 'react';
 import Trie from '../utils/prefixtree';
 import {uniqueArtists, artistObject} from '../spotify';
-
-// class Autocomplete
+import './Autocomplete.css'
 
 
 let tree = new Trie(uniqueArtists)
@@ -12,7 +11,7 @@ function Autocomplete (props) {
         console.log(props.guessArtist)
         console.log(tree.strings())
         return tree.complete(props.guessArtist.toLowerCase()).map((name) => {
-            return <div onClick = {() => {
+            return <div className = 'artist' onClick = {() => {
                 props.updateGuess(artistObject[name])
                 console.log(artistObject[name])
             }}>{artistObject[name]}</div>

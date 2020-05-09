@@ -8,7 +8,8 @@ class Guess extends Component{
   constructor(props) {
       super(props)
       this.state = {lyricsData : null,
-                    guessArtist: ''
+                    guessArtist: '',
+                    gameStatus : ''
                     }
   }
 
@@ -16,15 +17,22 @@ class Guess extends Component{
     e.preventDefault();
 
     if (this.state.guessArtist.toLowerCase() === this.props.artist.toLowerCase()) {
-
+      this.setState({gameStatus : 'correct'})
       console.log('woo hoo')
-      return 'woo Hoo'
     } else {
       console.log('better luck next time')
-      return 'better luck next time'
+      this.setState({gameStatus : 'incorrect'})
     }
   }
   
+  displayWinLose() {
+    if (this.state.gameStatus === 'correct') {
+      return 'correct'
+    }
+    else if (this.state.gameStatus === 'incorrect') {
+      return 'incorrect'
+    }
+  }
   //when an auto complete option is clicked, add it as input
   updateText = (text) => {this.setState({ guessArtist : text })}
 
@@ -41,6 +49,7 @@ class Guess extends Component{
       <button className='submit-btn' type="submit">Submit Guess</button>
       </form>
       <Autocomplete guessArtist = {this.state.guessArtist} updateGuess={this.updateText}/> 
+      {this.displayWinLose()}
     </div>
     )
   }

@@ -1,11 +1,14 @@
 import React, {Component} from 'react';
 import {getRandomSinger} from '../spotify'
 import Guess from './Guess'
+import Loading from './Loading'
+import './lyrics.css'
 
 class Lyrics extends Component{
   constructor(props) {
       super(props)
       this.state = {lyricsData : null,
+                    isLoading: false, // to check if data is still being loaded or already loaded
                     artist: '',
                     song: ''}
   }
@@ -14,12 +17,11 @@ class Lyrics extends Component{
     try{
       const proxyurl = "https://cors-anywhere.herokuapp.com/";
       const res = await fetch(proxyurl + url)
-      const json = await res.json() 
-      // return json
-      
-      this.setState({ lyricsData: json })
+      const json = await res.json()     
+      this.setState({ lyricsData: json, isLoading: false })
       
     } catch(err) {
+        this.setState({ lyricsData: null }) 
         console.log('-- Error fetching --')
         console.log(err.message)
         // You may want to display an error to the screen here. 
@@ -27,13 +29,12 @@ class Lyrics extends Component{
   }
 
   handleSubmit(e) {
+    this.setState({isLoading : true})
     e.preventDefault();
     const apikey = process.env.REACT_APP_LYRICS_API_KEY
-    // const url = `https://api.musixmatch.com/ws/1.1/matcher.lyrics.get?format=json&callback=callback&q_track=${this.state.song}&q_artist=${this.state.artist}%20&apikey=${apikey}`
     const [title, artist] = getRandomSinger()
-    //set the state of the song to the current selected title and artist
+    //set the state of the song to the current randomly selected title and artist
     this.setState({artist : artist, song : title})
-    console.log(this.state)
     console.log(title)
     console.log(artist)
     const url = `https://api.musixmatch.com/ws/1.1/matcher.lyrics.get?format=json&callback=callback&q_track=${title}&q_artist=${artist}%20&apikey=${apikey}`
@@ -41,10 +42,14 @@ class Lyrics extends Component{
   }
 
   renderLyrics() {
-    const lyrics_data = this.state.lyricsData
-    // console.log(lyrics_data)
-    if (lyrics_data !== null){
-      const {lyrics_body} = lyrics_data.message.body.lyrics
+    const lyricsData = this.state.lyricsData
+    if (lyricsData === null) { //
+      // If there is no data return undefined
+      return undefined
+    }
+
+    if (lyricsData.message.header.status_code === 200){ // if json status is valid, show data
+      const {lyrics_body} = lyricsData.message.body.lyrics
       let lines = lyrics_body.split('\n')
       // remove the last 4 elts in the lines array
       lines.splice(lines.length - 4)
@@ -52,46 +57,36 @@ class Lyrics extends Component{
       lines = lines.filter((line) => {
         return line !== ""
       })
-      // replaced regEx with empty space
-      lines = lines.map((line) => {
-        return line.replace(/[|&;$%@"<>()+,]/g, "");
-      })
-     
-
-      // return the first 3 lines of the lyrics
+      // return the first 6 lines of the lyrics
       const firstSix = lines.slice(0, 6)
       return firstSix.map((lyric) => {
         return <p>{lyric}</p>
       })
-      // return firstSix
-      
-    } 
-    return 'loading'
+    } else { //invalid json
+      return 'error'
+    }
   }
 
+  checkRender() {
+    if (this.state.isLoading) { //renders when waiting for json request data
+      return <Loading />
+    } 
+    return this.renderLyrics()
+  }
 
   render() {
     return (
-      <div>
-        <form onSubmit={e => this.handleSubmit(e)}>
-          <input 
-            value={this.state.artist} 
-            onChange={e => this.setState({ artist: e.target.value })}
-            type="text" 
-            placeholder="enter artist"
-          />
-          <input 
-            value={this.state.song} 
-            onChange={e => this.setState({ song: e.target.value })}
-            type="text" 
-            placeholder="enter song"
-          />
-
-          <button className='submit-btn' type="submit">Generate Lyrics</button>
-
-        </form>
-        <p>{this.renderLyrics()}</p>
-        <Guess artist = {this.state.artist}/>
+      <div className = 'game'>
+        <div className='lyricsGenerate'>
+          <form onSubmit={e => this.handleSubmit(e)}>
+            <button className='submit-btn' type="submit">Generate Lyrics</button>
+          </form>
+          <p>{this.checkRender()}</p>
+        </div>
+        <div className = 'guess'>
+          {/* Guess component */}
+          <Guess artist = {this.state.artist}/>
+        </div>
       </div> 
     )
   }

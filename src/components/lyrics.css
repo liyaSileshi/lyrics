@@ -1,3 +1,10 @@
 .game {
+    background-color:#46e3b4;
+    min-height: 100vh;
     display: flex;
+    justify-content: space-between;
+    text-align: center;
+    padding-left: 20em;
+    padding-right: 20em;
+    align-items: center;
 }

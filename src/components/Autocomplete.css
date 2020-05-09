@@ -1,4 +1,7 @@
 .artist{
     border-style: solid;
-    
+    border-radius: 0.25em;
+    border-width: 1px;
+    padding: 1em;
+    margin-bottom: 0.1em;
 }

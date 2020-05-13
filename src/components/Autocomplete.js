@@ -17,7 +17,7 @@ function Autocomplete (props) {
             }}>{artistObject[name]}</div>
           })
     }
-   else return 'none' 
+   else return ''
 }
 
 export default Autocomplete;

@@ -1,8 +1,9 @@
 // <Guess  artist =  />
 import React, {Component} from 'react';
-import Trie from '../utils/prefixtree'
-import {uniqueArtists} from '../spotify'
 import Autocomplete from './Autocomplete'
+import './Guess.css'
+import Correct from './Correct'
+import Incorrect from './Incorrect'
 
 class Guess extends Component{
   constructor(props) {
@@ -27,10 +28,10 @@ class Guess extends Component{
   
   displayWinLose() {
     if (this.state.gameStatus === 'correct') {
-      return 'correct'
+      return <Correct />
     }
     else if (this.state.gameStatus === 'incorrect') {
-      return 'incorrect'
+      return <Incorrect />
     }
   }
   //when an auto complete option is clicked, add it as input
@@ -39,7 +40,7 @@ class Guess extends Component{
   render() {
     return (
       <div>
-      <form onSubmit={e => this.handleGuessLogic(e)}>
+      <form className='guess-form' onSubmit={e => this.handleGuessLogic(e)}>
       <input 
         value={this.state.guessArtist} 
         onChange={e => this.setState({ guessArtist: e.target.value })}

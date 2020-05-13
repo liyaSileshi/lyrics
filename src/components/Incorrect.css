@@ -1,7 +1,7 @@
-.error {
+.incorrect {
+    margin-top: 1em;
     color: black;
     border: solid;
     border-width: medium;
     border-radius: 10px;
-    
 }

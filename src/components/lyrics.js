@@ -3,6 +3,7 @@ import {getRandomSinger} from '../spotify'
 import Guess from './Guess'
 import Loading from './Loading'
 import './lyrics.css'
+import Error from './Error'
 
 class Lyrics extends Component{
   constructor(props) {
@@ -38,6 +39,7 @@ class Lyrics extends Component{
     console.log(title)
     console.log(artist)
     const url = `https://api.musixmatch.com/ws/1.1/matcher.lyrics.get?format=json&callback=callback&q_track=${title}&q_artist=${artist}%20&apikey=${apikey}`
+    // const url = `https://api.musixmatch.com/ws/1.1/matcher.lyrics.get?format=json&callback=callback&q_track=yo&q_artist=u%20&apikey=${apikey}`
     this.getLyricData(url)
   }
 
@@ -63,7 +65,7 @@ class Lyrics extends Component{
         return <p>{lyric}</p>
       })
     } else { //invalid json
-      return 'error'
+      return <Error />
     }
   }
 

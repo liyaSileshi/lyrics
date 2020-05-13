@@ -9,9 +9,11 @@ import './components/Autocomplete'
 function App() {
   return (
     <div className="App">
-      {/* <header className="App-header"> */}
+        <header>
+          <h1> Guess the Artist</h1>
+          <p>Can you guess the artist from these lyrics? </p>
+        </header>
         <Lyrics />
-      {/* </header> */}
     </div>
   );
 }

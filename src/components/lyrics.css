@@ -1,10 +1,36 @@
-.game {
-    background-color:#46e3b4;
+.game {   
     min-height: 100vh;
     display: flex;
     justify-content: space-between;
     text-align: center;
     padding-left: 20em;
     padding-right: 20em;
-    align-items: center;
+    align-items: flex-start;
 }
+.game > div {
+    /* border: solid 1px; */
+    width: 50%;
+    min-width: 340px;
+}
+
+.game button {
+    padding: 0.5rem 0.75rem 0.5rem 0.75rem;
+    border: solid 1px;
+    border-radius: 1rem;
+    background-color: rgb(28, 4, 52);
+    color: white;
+    font-size: 1rem;
+}
+
+.guess button {
+    border-radius: 0 1rem 1rem 0 ;
+}
+
+.game input {
+    padding: 0.5rem 0.75rem 0.5rem 0.75rem;
+    border: solid 1px;
+    border-radius: 1rem 0 0 1rem ;
+    color: rgb(28, 4, 52);
+    font-size: 1rem;
+}
+

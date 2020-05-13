@@ -71,7 +71,6 @@ class Trie {
     for (let ch = 0; ch < string_arr.length; ch++) {
       if (node.hasChild(string_arr[ch])){
         node = node.getChild(string_arr[ch])
-        console.log(node)
         depth += 1
       }
       else{
@@ -88,7 +87,7 @@ class Trie {
     let completions = []
     // find node of prefix
     let node = this.findNode(prefix)[0]
-    console.log(node)
+    // console.log(node)
     // check if node is found
     if (node === null) {
       return [] //empty arr

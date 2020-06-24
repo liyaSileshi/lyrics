@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import {getRandomSinger} from '../spotify'
 import Guess from './Guess'
 import Loading from './Loading'
-import './lyrics.css'
+import './lyrics.scss'
 import Error from './Error'
 
 class Lyrics extends Component{

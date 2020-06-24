@@ -14,6 +14,7 @@ const artistObject = uniqueArtists.reduce((obj, artist) => {
   obj[artist.toLowerCase()] = artist
   return obj
 }, {})
+
 console.log(artistObject)
 
 

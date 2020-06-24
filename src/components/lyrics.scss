@@ -1,0 +1,38 @@
+$border-size: 1px;
+$font-size: 1rem;
+$padding-amt: 20em;
+.game {   
+    min-height: 100vh;
+    display: flex;
+    justify-content: space-between;
+    text-align: center;
+    padding-left: $padding-amt;
+    padding-right: $padding-amt;
+    align-items: flex-start;
+    & > div {
+        width: 50%;
+        min-width: 340px;
+    }
+    button {
+        padding: 0.5rem 0.75rem 0.5rem 0.75rem;
+        border: solid $border-size;
+        border-radius: 1rem;
+        background-color: rgb(28, 4, 52);
+        color: white;
+        font-size: $font-size;
+    }
+    input {
+        padding: 0.5rem 0.75rem 0.5rem 0.75rem;
+        border: solid $border-size;
+        border-radius: 1rem 0 0 1rem ;
+        color: rgb(28, 4, 52);
+        font-size: $font-size;
+    }
+}
+
+
+.guess button {
+    border-radius: 0 1rem 1rem 0 ;
+}
+
+

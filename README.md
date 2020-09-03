@@ -1,4 +1,4 @@
-## Guess the Artist 🤔
+## Guess the Artist 🤔🎙💽
 
 A game where the user will be given a snippet of random lyrics and the aim is to guess who the artist of the song is. It has two states, Correct 😀 or Incorrect 😄.
 

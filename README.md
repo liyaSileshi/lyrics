@@ -6,7 +6,7 @@ Implemented an autocomplete component for looking up artist name.
 
 Live link: https://liyasileshi.github.io/lyrics/
 
-<img src='public/images/prefixtreeimg.jpeg' height='500' width='auto'>
+<img src='public/lyrics.png' height='200' width='auto'>
 
 
 ## Getting Started

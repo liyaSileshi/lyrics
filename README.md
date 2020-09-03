@@ -9,18 +9,18 @@ Live link: https://liyasileshi.github.io/lyrics/
 <img src='public/lyrics.png' height='300' width='auto'>
 
 
-## Getting Started
+## Getting Started 🚀
 
 These instructions will get you a copy of the project up and running on your local machine for development and testing purposes.
 
-### Prerequisites
+### Prerequisites ✨
 
 - React
 - JavaScript knowledge
 - CSS 
 - SCSS
 
-### Installing
+### Installing 📲
 
 > To get started...
 
@@ -31,7 +31,7 @@ These instructions will get you a copy of the project up and running on your loc
 - **Option 2**
     - 👯 Clone this repo to your local machine using `https://github.com/liyaSileshi/lyrics.git`
 
-### Quick Start
+### Quick Start 🎬
 
 Get up and running with Lyrics app:
 
@@ -42,7 +42,7 @@ npm install
 npm start
 ```
 
-## Built With
+## Built With 🏗
 
 * [React](https://reactjs.org/)
 * CSS
